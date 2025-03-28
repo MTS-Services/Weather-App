@@ -8,9 +8,14 @@
 
 ## Screenshots (Light mode)
 
-Sunny Screen                    |   Screen Preview         |  Rainy Screen | 
-:-------------------------:|:-------------------------:|:-------------------------:|
-![](https://github.com/JabedJahangir/Weather-App-2/blob/master/screen_shots/b816b357-7089-400d-94ac-428241e04ca2.JPEG?raw=true)|![](https://github.com/JabedJahangir/Weather-App-2/blob/master/screen_shots/ezgif-7edffd0e6587c9.gif?raw=true)|![](https://github.com/JabedJahangir/Weather-App-2/blob/master/screen_shots/0e571ef9-a618-4ddd-9c15-162290d01d0f.JPEG?raw=true)|
+        Sunny Screen       |          Rainy Screen     | 
+:-------------------------:|:-------------------------:|
+![](https://github.com/JabedJahangir/Weather-App-2/blob/master/screen_shots/b816b357-7089-400d-94ac-428241e04ca2.JPEG?raw=true)|![](https://github.com/JabedJahangir/Weather-App-2/blob/master/screen_shots/0e571ef9-a618-4ddd-9c15-162290d01d0f.JPEG?raw=true)|
+
+
+## Screen Preview
+
+![](https://github.com/JabedJahangir/Weather-App-2/blob/master/screen_shots/ezgif-7edffd0e6587c9.gif?raw=true)
 
 
 ## 🚀 Features :
