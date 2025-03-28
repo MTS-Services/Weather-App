@@ -22,137 +22,128 @@ class _BottomInfoState extends State<BottomInfo> {
       bottom: -screenHeight * 0.263,
       child: Container(
         color: Colors.white,
+        alignment: Alignment.center,
         width: screenWidth,
-        height: screenHeight * 0.43,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 25, right: 15, left: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(Icons.navigate_before),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        selectedTab = 'Yesterday';
-                      });
-                    },
-                    child: Text(
-                      'Yesterday',
-                      style: GoogleFonts.josefinSans(
-                          fontSize: selectedTab == 'Yesterday' ? 22 : 20,
-                          fontWeight: selectedTab == 'Yesterday'
-                              ? FontWeight.bold
-                              : FontWeight.w500,
-                          color: Colors.black),
-                    ),
+        height: screenHeight * 0.4,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Icon(Icons.navigate_before),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedTab = 'Yesterday';
+                    });
+                  },
+                  child: Text(
+                    'Yesterday',
+                    style: GoogleFonts.josefinSans(
+                        fontSize: selectedTab == 'Yesterday' ? 22 : 20,
+                        fontWeight: selectedTab == 'Yesterday'
+                            ? FontWeight.bold
+                            : FontWeight.w500,
+                        color: Colors.black),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        selectedTab = 'Today';
-                      });
-                    },
-                    child: Text(
-                      'Today',
-                      style: GoogleFonts.josefinSans(
-                          fontSize: selectedTab == 'Today' ? 22 : 20,
-                          fontWeight: selectedTab == 'Today'
-                              ? FontWeight.bold
-                              : FontWeight.w500,
-                          color: Colors.black),
-                    ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedTab = 'Today';
+                    });
+                  },
+                  child: Text(
+                    'Today',
+                    style: GoogleFonts.josefinSans(
+                        fontSize: selectedTab == 'Today' ? 22 : 20,
+                        fontWeight: selectedTab == 'Today'
+                            ? FontWeight.bold
+                            : FontWeight.w500,
+                        color: Colors.black),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        selectedTab = 'Tomorrow';
-                      });
-                    },
-                    child: Text(
-                      'Tomorrow',
-                      style: GoogleFonts.josefinSans(
-                          fontSize: selectedTab == 'Tomorrow' ? 22 : 20,
-                          fontWeight: selectedTab == 'Tomorrow'
-                              ? FontWeight.bold
-                              : FontWeight.w500,
-                          color: Colors.black),
-                    ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedTab = 'Tomorrow';
+                    });
+                  },
+                  child: Text(
+                    'Tomorrow',
+                    style: GoogleFonts.josefinSans(
+                        fontSize: selectedTab == 'Tomorrow' ? 22 : 20,
+                        fontWeight: selectedTab == 'Tomorrow'
+                            ? FontWeight.bold
+                            : FontWeight.w500,
+                        color: Colors.black),
                   ),
-                  const Icon(Icons.navigate_next),
-                ],
-              ),
-              SizedBox(height: screenHeight * 0.01),
-              SizedBox(
-                height: 150,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    final hourlyForecast = widget.forecastData[index + 1];
-                    final hourlyTemp =
-                        (hourlyForecast['main']['temp'] as num).toInt();
+                ),
+                const Icon(Icons.navigate_next),
+              ],
+            ),
+            SizedBox(
+              height: 150,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  final hourlyForecast = widget.forecastData[index + 1];
+                  final hourlyTemp =
+                      (hourlyForecast['main']['temp'] as num).toInt();
 
-                    final hourlyTempIcon =
-                        widget.forecastData[index + 1]['weather'][0]['main'];
+                  final hourlyTempIcon =
+                      widget.forecastData[index + 1]['weather'][0]['main'];
 
-                    final time = DateTime.parse(hourlyForecast['dt_txt']);
-                    final hourlyTime = DateFormat.j().format(time);
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Card(
-                        elevation: 2,
-                        color: const Color(0xFFE7F7FF),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(35),
-                        ),
-                        child: SizedBox(
-                          width: 74,
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  hourlyTime,
-                                  style: GoogleFonts.josefinSans(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                const SizedBox(height: 10),
-                                hourlyTempIcon == 'Clear'
-                                    ? const Icon(Icons.sunny)
-                                    : hourlyTempIcon == 'Clouds'
-                                        ? const Icon(Icons.cloud)
-                                        : hourlyTempIcon == 'Rain' ||
-                                                hourlyTempIcon ==
-                                                    'Thunderstorm' ||
-                                                hourlyTempIcon == 'Drizzle'
-                                            ? const Icon(Icons.cloud)
-                                            : hourlyTempIcon == 'Snow'
-                                                ? const Icon(Icons.ac_unit)
-                                                : const Icon(Icons.sunny),
-                                const SizedBox(height: 10),
-                                Text(
-                                  '$hourlyTemp° C',
-                                  style: GoogleFonts.josefinSans(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
+                  final time = DateTime.parse(hourlyForecast['dt_txt']);
+                  final hourlyTime = DateFormat.j().format(time);
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                          color: Color(0xFFE7F7FF),
+                          borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(40),
+                              top: Radius.circular(40))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(
+                          children: [
+                            Text(
+                              hourlyTime,
+                              style: GoogleFonts.josefinSans(
+                                  fontSize: 16, fontWeight: FontWeight.w400),
                             ),
-                          ),
+                            const SizedBox(height: 10),
+                            hourlyTempIcon == 'Clear'
+                                ? const Icon(Icons.sunny)
+                                : hourlyTempIcon == 'Clouds'
+                                    ? const Icon(Icons.cloud)
+                                    : hourlyTempIcon == 'Rain' ||
+                                            hourlyTempIcon == 'Thunderstorm' ||
+                                            hourlyTempIcon == 'Drizzle'
+                                        ? const Icon(Icons.cloud)
+                                        : hourlyTempIcon == 'Snow'
+                                            ? const Icon(Icons.ac_unit)
+                                            : const Icon(Icons.sunny),
+                            const SizedBox(height: 10),
+                            Text(
+                              '$hourlyTemp° C',
+                              style: GoogleFonts.josefinSans(
+                                  fontSize: 16, fontWeight: FontWeight.w400),
+                            ),
+                          ],
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

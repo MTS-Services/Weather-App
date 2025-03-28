@@ -15,8 +15,6 @@ class MidLevelInfo extends StatelessWidget {
   final String screenCheck;
   final List<dynamic> forecastData;
 
-    
-
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -117,14 +115,16 @@ class MidLevelInfo extends StatelessWidget {
         forecastData: forecastData,
       )
     ];
-    return Stack(
-      alignment: Alignment.center,
-      clipBehavior: Clip.none,
-      children: screenCheck == 'Rain' ||
-              screenCheck == 'Thunderstorm' ||
-              screenCheck == 'Drizzle'
-          ? rainGirlWidget
-          : walkingWidget,
+    return SingleChildScrollView(
+      child: Stack(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: screenCheck == 'Rain' ||
+                screenCheck == 'Thunderstorm' ||
+                screenCheck == 'Drizzle'
+            ? rainGirlWidget
+            : walkingWidget,
+      ),
     );
   }
 }
